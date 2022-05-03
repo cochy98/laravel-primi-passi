@@ -14,5 +14,41 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home', ['message' => 'Ciao, benvenuto su laravel!']);
-});
+    $links = [
+        [
+            'text'      => 'Home',
+            'source'    => 'home',
+            'isActive'  => true
+        ],
+        [
+            'text'      => 'Chi siamo',
+            'source'    => 'chi_siamo',
+            'isActive'  => false
+        ],
+        [
+            'text'      => 'Blog',
+            'source'    => 'blog',
+            'isActive'  => false
+        ],
+        [
+            'text'      => 'Contatti',
+            'source'    => 'contacts',
+            'isActive'  => false
+        ],
+    ];
+    return view('home', ['links' => $links]);
+})->name('home');
+
+Route::get('/chi-siamo', function () {
+    return view('chi-siamo');
+})->name('chi_siamo');
+
+Route::get('/blog', function () {
+    return view('blog' );
+})->name('blog');
+
+Route::get('/contacts', function () {
+    return view('contacts' );
+})->name('contacts');
+
+
